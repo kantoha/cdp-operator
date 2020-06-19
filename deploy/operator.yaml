@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cdp-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: cdp-operator
+  template:
+    metadata:
+      labels:
+        name: cdp-operator
+    spec:
+      serviceAccountName: cdp-operator
+      containers:
+        - name: cdp-operator
+          # Replace this with the built image name
+          image: kanton10062006/operator:latest
+          command:
+          - cdp-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "cdp-operator"

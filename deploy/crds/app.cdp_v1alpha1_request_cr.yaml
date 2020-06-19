@@ -1,0 +1,6 @@
+apiVersion: app.cdp/v1alpha1
+kind: Request
+metadata:
+  name: example-request
+spec:
+  host: "https://hub.docker.com"

@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cdp-operator
+subjects:
+- kind: ServiceAccount
+  name: cdp-operator
+roleRef:
+  kind: Role
+  name: cdp-operator
+  apiGroup: rbac.authorization.k8s.io
